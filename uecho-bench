@@ -3,19 +3,25 @@
 uechos=(
 "uecho"
 "uecho-rs"
+"uecho-go"
+"uecho-py"
 )
 
 build_cmds=(
 "./bootstrap && ./configure --enable-examples && make -j 20"
 "cargo build"
+"make install"
+"pip3 install -r requirements.txt"
 )
 
 run_cmds=(
 "time ./examples/controller/uechosearch/unix/uechosearch -v"
 "time cargo run"
+"~/go/bin/uechosearch"
+"env PYTHONPATH=`pwd` bin/uechosearch -v"
 )
 
-for n in {0..1}
+for n in {0..3}
 do
     uechodir=${uechos[$n]}
     giturl="https://github.com/cybergarage/${uechos[$n]}"
