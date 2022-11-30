@@ -1,0 +1,28 @@
+#!/bin/bash
+
+uechos=(
+"uecho"
+"uecho-rs"
+)
+
+build_cmds=(
+"./bootstrap && ./configure --enable-examples && make -j 20"
+"cargo build"
+)
+
+run_cmds=(
+"time ./examples/controller/uechosearch/unix/uechosearch -v"
+"time cargo run"
+)
+
+for n in {0..1}
+do
+    uechodir=${uechos[$n]}
+    giturl="https://github.com/cybergarage/${uechos[$n]}"
+	git clone ${giturl}
+	pushd ${uechodir}
+	eval ${build_cmds[$n]}
+	eval ${run_cmds[$n]}
+    rm -rf ${uechodir}
+    popd
+done
