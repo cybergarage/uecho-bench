@@ -7,6 +7,22 @@ uechos=(
 "uecho-py"
 )
 
+########################################
+# Clone
+########################################
+
+for n in {0..3}
+do
+    uechodir=${uechos[$n]}
+    rm -rf ${uechodir}
+    giturl="https://github.com/cybergarage/${uechos[$n]}"
+	git clone ${giturl}
+done
+
+########################################
+# Benchmark
+########################################
+
 build_cmds=(
 "./bootstrap && ./configure --enable-examples && make -j 20"
 "cargo build"
@@ -17,18 +33,36 @@ build_cmds=(
 run_cmds=(
 "time ./examples/controller/uechosearch/unix/uechosearch -v"
 "time cargo run"
-"~/go/bin/uechosearch"
-"env PYTHONPATH=`pwd` bin/uechosearch -v"
+"time ~/go/bin/uechosearch"
+"time env PYTHONPATH=`pwd` bin/uechosearch -v"
 )
 
 for n in {0..3}
 do
     uechodir=${uechos[$n]}
-    giturl="https://github.com/cybergarage/${uechos[$n]}"
-	git clone ${giturl}
 	pushd ${uechodir}
 	eval ${build_cmds[$n]}
 	eval ${run_cmds[$n]}
-    rm -rf ${uechodir}
     popd
+done
+
+########################################
+# LOC (tokei)
+########################################
+
+del_cmds=(
+"rm src/std/manufacturers.c src/std/objects_mra.c"
+"rm src/database_manufacturers.rs src/database_mra_objects.rs"
+"rm net/echonet/database_manufacturers.go net/echonet/database_mra_objects.go"
+"rm uecho/std/manufacturers.py uecho/std/objects_mra.py uecho/std/objects_scsl.py"
+)
+
+for n in {0..3}
+do
+    uechodir=${uechos[$n]}
+    tokei ${uechodir}
+	pushd ${uechodir}
+	eval ${del_cmds[$n]}
+    popd
+    tokei ${uechodir}
 done
