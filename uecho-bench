@@ -50,11 +50,18 @@ done
 # LOC (tokei)
 ########################################
 
-del_cmds=(
+rm_cmds=(
 "rm src/std/manufacturers.c src/std/objects_mra.c"
 "rm src/database_manufacturers.rs src/database_mra_objects.rs"
 "rm net/echonet/database_manufacturers.go net/echonet/database_mra_objects.go"
 "rm uecho/std/manufacturers.py uecho/std/objects_mra.py uecho/std/objects_scsl.py"
+)
+
+find_rm_cmds=(
+"find . -name "*.cpp" | xargs -L 1 rm"
+"find . -name "*_test.rs" | xargs -L 1 rm"
+"find . -name "*_test.go" | xargs -L 1 rm"
+"find . -name "*_test.py" | xargs -L 1 rm"
 )
 
 for n in {0..3}
@@ -62,7 +69,8 @@ do
     uechodir=${uechos[$n]}
     tokei ${uechodir}
 	pushd ${uechodir}
-	eval ${del_cmds[$n]}
+	eval ${rm_cmds[$n]}
+	eval ${find_rm_cmds[$n]}
     popd
     tokei ${uechodir}
 done
