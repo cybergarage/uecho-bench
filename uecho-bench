@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 uechos=(
 "uecho"
@@ -50,10 +50,10 @@ build_cmds=(
 )
 
 run_cmds=(
-"time ./examples/controller/uechosearch/unix/uechosearch -v"
-"time cargo run"
-"time ~/go/bin/uechosearch"
-"time env PYTHONPATH=`pwd` bin/uechosearch -v"
+"./examples/controller/uechosearch/unix/uechosearch -v"
+"cargo run"
+"~/go/bin/uechosearch"
+"env PYTHONPATH=`pwd` bin/uechosearch -v"
 )
 
 for n in {0..3}
@@ -61,7 +61,8 @@ do
     uechodir=${uechos[$n]}
 	pushd ${uechodir}
 	eval ${build_cmds[$n]}
-	eval ${run_cmds[$n]}
+    run_cmd="time repeat 5 {${run_cmds[$n]}}"
+	eval ${run_cmd}
     popd
 done
 
@@ -92,7 +93,7 @@ do
     popd
     tokei ${uechodir}
 	pushd ${uechodir}
-	eval ${rm_cmds[$n]}
+	# eval ${rm_cmds[$n]}
     popd
     tokei ${uechodir}
 done
