@@ -93,7 +93,7 @@ do
     popd
     tokei ${uechodir}
 	pushd ${uechodir}
-	# eval ${rm_cmds[$n]}
+	eval ${rm_cmds[$n]}
     popd
     tokei ${uechodir}
 done
