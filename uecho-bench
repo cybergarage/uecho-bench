@@ -55,6 +55,14 @@ do
     uechodir=${uechos[$n]}
 	pushd ${uechodir}
 	eval ${build_cmds[$n]}
+    popd
+done
+
+for n in {0..3}
+do     
+    uechodir=${uechos[$n]}
+	pushd ${uechodir}
+    run_cmd=${run_cmds[$n]}
 	eval time ${run_cmd}
     popd
 done
