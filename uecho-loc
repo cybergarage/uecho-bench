@@ -47,7 +47,7 @@ find_rm_cmds=(
 rm_cmds=(
 "rm src/uecho/std/manufacturers.c src/uecho/std/objects_mra.c"
 "rm src/database_manufacturers.rs src/database_mra_objects.rs"
-"rm net/echonet/database_manufacturers.go net/echonet/database_mra_objects.go"
+"rm net/echonet/std_manufacturers.go net/echonet/std_mra_objects.go"
 "rm uecho/std/manufacturers.py uecho/std/objects_mra.py uecho/std/objects_scsl.py"
 )
 
