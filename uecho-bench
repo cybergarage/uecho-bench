@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # Copyright (C) 2021 Satoshi Konno. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,11 +51,12 @@ run_cmds=(
 )
 
 for n in {0..3}
-do
+do     
     uechodir=${uechos[$n]}
 	pushd ${uechodir}
 	eval ${build_cmds[$n]}
-    run_cmd="time repeat 5 {${run_cmds[$n]}}"
+    # run_cmd="time repeat 5 {${run_cmds[$n]}}"
+    run_cmd="time for n in {1..5}; do ${run_cmds[$n]}}; done"
 	eval ${run_cmd}
     popd
 done
