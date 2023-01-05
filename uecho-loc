@@ -37,10 +37,10 @@ done
 ########################################
 
 find_rm_cmds=(
-"find . -name "*.cpp" | xargs -L 1 rm"
-"find . -name "*_test.rs" | xargs -L 1 rm"
-"find . -name "*_test.go" | xargs -L 1 rm"
-"find . -name "*_test.py" | xargs -L 1 rm"
+"find . -name \"*.cpp\" | xargs -L 1 rm"
+"find . -name \"*_test.rs\" | xargs -L 1 rm"
+"find . -name \"*_test.go\" | xargs -L 1 rm"
+"find . -name \"*_test.py\" | xargs -L 1 rm"
 )
 
 
