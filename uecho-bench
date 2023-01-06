@@ -44,10 +44,10 @@ build_cmds=(
 )
 
 run_cmds=(
-"./examples/controller/uechobench/unix/uechobench -v -n 100"
+"./examples/controller/uechobench/unix/uechobench -v -n 10000"
 "make bench"
-"~/go/bin/uechobench -n 100"
-"env PYTHONPATH=`pwd` bin/uechobench -v -n 100"
+"~/go/bin/uechobench -n 10000"
+"env PYTHONPATH=`pwd` bin/uechobench -v -n 10000"
 )
 
 for n in {0..3}
